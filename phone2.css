@@ -1,0 +1,45 @@
+/* Navigation Bar */
+#navbar {
+    flex-direction: column;
+}
+#navbar::before{
+    height: 115px;
+}
+#navbar ul{
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+}
+#navbar ul li{
+    padding: 8px;
+}
+#navbar ul li a{
+    font-size: 15px;
+}
+#search{
+    margin-left: 50px;
+}
+
+/* Header */
+#heading{
+    font-size: 35px;
+    margin: 5px;
+}
+#header p{
+    font-size: 15px; 
+}
+#ourhead{
+    height: 100px;
+}
+#heading2{
+    font-size: 25px;
+}
+
+/* Footer */
+#footer h2{
+    font-size: 20px;
+}
+#footer a{
+    font-size: 10px;
+}
