@@ -145,20 +145,23 @@ background-color: antiquewhite;
     justify-content: space-evenly;
     align-items: flex-end; */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-    ju
+    justify-content: center;
+    align-items: center;
+    grid-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 300px))
 } 
 
 .imgcss{
     border-radius: 10px;
     width: 250px;
+
 }
 
 .contents{
     display: flex;
-    width: 250px;
+    /* width: 250px; */
     flex-direction: column;
-    /* margin: 15px; */
+    margin: 15px;
     padding: 10px;
     border-radius: 15px;
     background-color: rgb(209, 209, 209);
