@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events and listning Events</title>
+    <style>
+        h1{
+            font-size: 90px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        p{
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        button{
+           border: none;
+           background-color: aqua;
+           padding: 10px 14px;
+           border-radius: 15px;
+           cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 align="center ">This is heading</h1>
+        <p align="center" id="para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea consequatur corporis sequi rem nesciunt molestias doloremque ipsum vitae officiis, cupiditate veniam impedit, minima id facilis quod necessitatibus. Ut ratione voluptatum qui voluptate eos mollitia enim vero quibusdam illum eligendi, dolore, fugit incidunt nostrum quasi facere a placeat. Maiores, molestias cumque qui, minima non nesciunt distinctio vero inventore a dolorem, excepturi delectus dolorum! Neque voluptatum quisquam adipisci, doloremque repudiandae dolores earum inventore explicabo non dignissimos vitae obcaecati corrupti modi nesciunt culpa veritatis? Culpa delectus cupiditate ipsum voluptatum fuga incidunt excepturi aspernatur quaerat atque molestiae voluptatibus odit quibusdam natus, aliquam architecto nesciunt necessitatibus quia fugiat! Possimus iusto voluptatibus similique perferendis quaerat molestias molestiae. Quos, repellendus. Iure reprehenderit nihil perferendis soluta impedit quo nemo dicta! Quas doloremque officia pariatur ex quia veniam labore perferendis veritatis inventore corrupti vitae sit, quod sed aperiam, natus repellat autem voluptas. Eius ut alias voluptate iste corrupti amet blanditiis assumenda hic, modi eos iure nisi totam doloribus voluptatem iusto molestiae natus harum voluptatum vitae, praesentium voluptatibus beatae accusamus. Saepe, non quos! Rerum esse eligendi, quaerat ut architecto saepe explicabo laboriosam ipsum! Accusamus laboriosam corrupti nesciunt reprehenderit cum at blanditiis aspernatur, delectus nostrum dolore repellendus sed iure placeat vel eaque ratione earum eos incidunt et animi voluptatum. Aliquam ad cum doloribus nisi impedit repellendus sequi odit, praesentium autem accusantium. Assumenda molestiae aspernatur sit adipisci quo suscipit, nisi aperiam? Accusamus!</p>
+    </div>
+    <button align="center" id="btn" onclick="shide()">Hide/Show</button>
+        <script>
+            let para = document.getElementById('para')
+            para.addEventListener('mouseover', function run(){
+                alert("your mouse inside")
+            })
+            para.addEventListener('mouseout', function run(){
+                alert("your mouse outside")
+            })
+            
+            function shide(){
+                let para = document.getElementById('para')
+                if (para.style.display != 'none'){
+                    para.style.display = 'none'
+                }
+                else{
+                    para.style.display = 'block'
+                }
+            }
+        </script>
+</body>
+</html>

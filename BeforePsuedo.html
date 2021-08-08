@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Website</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #navbar {
+            display: flex;
+            height: 70px;
+            align-items: center;
+            position: relative;
+        }
+
+        #navbar::before {
+            position: absolute;
+            content: "";
+            background-color: black;
+            height: 100%;
+            width: 100%;
+            top: 0%;
+            left: 0%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        #logotext {
+            padding: 5px;
+            width: 70px;
+            text-align: center;
+            font-size: 55px;
+            margin-bottom: 7px;
+            margin-left: 15px;
+            transition-property: all;
+            transition-duration: 0.3s;
+        }
+
+        #navbar div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        #list {
+            margin: auto;
+            justify-content: center;
+        }
+
+        .box {
+            padding: 5px;
+            margin: 0px 30px;
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+        }
+
+        #header {
+            height: 400px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            /* position: relative; */
+        }
+
+        #heading {
+            font-size: 40px;
+            margin: 20px;
+        }
+
+        #header::before {
+            content: "";
+            position: absolute;
+            background-image: url(/Picture/bg1.jpg);
+            height: 477px;
+            width: 100%;
+            top: 0%;
+            bottom: 0%;
+            right: 0%;
+            left: 0%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+
+            <div id="logo">
+                <h1 id="logotext">Stationary</h1>
+            </div>
+
+            <div id="list">
+                <ul>
+                    <li> <a href="#" class="box">Home</a> </li>
+                    <li> <a href="#" class="box">Categories</a> </li>
+                    <li> <a href="#" class="box">About Us</a> </li>
+                    <li> <a href="#" class="box">Cart</a> </li>
+                    <li> <a href="#" class="box">Contact Us</a> </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="header">
+        <div id="heading">
+            <h1>Stationary</h1>
+        </div>
+        <div id="heading2">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum cupiditate modi reiciendis et placeat
+                veritatis, numquam dicta fuga vitae quibusdam!</p>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaterWave</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .liquid{
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        .liquid h2 {
+            position: absolute;
+            font-size: 200px;
+            
+        }
+        .liquid h2:nth-child(1){
+            color: transparent;
+            -webkit-text-stroke: 2px rgb(62, 178, 255);
+        }
+        .liquid h2:nth-child(2){
+            color: rgb(62, 178, 255);
+            animation-name: abhay;
+            animation-timing-function: ease-in-out;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes abhay {
+            0%, 100%{
+                clip-path: polygon(0% 46%, 13% 54%, 29% 58%, 45% 56%, 58% 51%, 78% 49%, 89% 52%, 99% 57%, 100% 100%, 0% 100%);
+            }
+            50%{
+                clip-path: polygon(0 63%, 15% 51%, 31% 43%, 45% 42%, 59% 50%, 76% 57%, 89% 54%, 99% 57%, 100% 100%, 0% 100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid">
+        <h2>WATER</h2>
+        <h2>WATER</h2>
+    </div>
+</body>
+</html>
