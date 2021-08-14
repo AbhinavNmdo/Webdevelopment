@@ -3,26 +3,26 @@ const app = express();
 const port = 80;
 const path = require("path")
 const fs = require("fs")
-const form = fs.readFileSync('form.html')
 
 app.set('view engine', 'pug')
 app.set('views',path.join(__dirname, 'views'))
+app.use(express.urlencoded())
 
 app.get("/", (req, res)=>{
     res.status(200).render('Index.pug')
 })
 
 app.post('/', (req, res)=>{
-    name = req.body.name
-    age = req.body.age
-    gender = req.body.gender
-    address = req.body.address
-    more = req.body.more
+    let namee = req.body.name
+    let age = req.body.age
+    let email = req.body.email
+    let more = req.body.more
+    // let more = req.body
 
-    let outputToWrite = `the name of the client is ${name}, ${age} years old, ${gender}, residing at ${address}. More about him/her: ${more}`
-    fs.writeFileSync('output.txt', outputToWrite)
+    let outputToWrite = `the name of the client is ${namee}, ${age} years old, ${email}. More about him/her: ${more} \n`
+    fs.appendFileSync('output.txt', outputToWrite)
     const params = {'message': 'Your form has been submitted successfully'}
-    res.status(200).render('index.pug', params);
+    res.status(200).render('Index.pug', params);
 
 })
 
