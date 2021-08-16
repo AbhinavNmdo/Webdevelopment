@@ -19,9 +19,8 @@ app.post('/', (req, res)=>{
     let more = req.body.more
     // let more = req.body
 
-    let outputToWrite = `the name of the client is ${namee}, ${age} years old, ${email}. More about him/her: ${more} \n`
+    let outputToWrite = `Name: ${namee}`
     fs.appendFileSync('output.txt', outputToWrite)
-    const params = {'message': 'Your form has been submitted successfully'}
     res.status(200).render('Index.pug', params);
 
 })
