@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/lax.js" ></script>
     <title>Laxx</title>
     <style>
         .container
@@ -35,10 +37,17 @@
     </style>
 <body>
     <div class="scrolldown">Scroll Down</div>
-    <div class="container lax lax_preset_scaleInOut:167.75:0.6">Animation</div>
+    <div class="container lax" data-lax-opacity="0 0, 400 -400" >Animation</div>
     <div class="scrollup">Scroll Up</div>
 </body>
-<script src="node_modules/lax.js/lib/lax.min.js"></script>
+<!-- <script src="node_modules/lax.js/lib/lax.min.js"></script> -->
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+        offset: 600
+    });
+  </script>
 <script>
     window.onload = function () {
         lax.init()
@@ -58,13 +67,5 @@
             }
         })
     }
-
-    // window.onload = function () {
-    //     lax.init()
-
-    //     document.addEventListener('scroll', function(e) {
-    //     lax.update(window.scrollY)
-    //     }, false)
-    // }    
 </script>
 </html>
