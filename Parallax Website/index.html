@@ -21,6 +21,62 @@
             background-image: url(/Parallax_Website/bg.jpg);
             background-size: cover;
         }
+
+        .zoom::before
+        {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 1000;
+            background: linear-gradient(transparent, #fff);
+        }
+
+        .zoom #layer1
+        {
+            position: absolute;
+            left: 40%;
+            width: 100%;
+            transform: translateX(-40%);
+            padding-bottom: 1000px;
+            z-index: 10;
+        }
+        
+        .zoom #layer2
+        {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            z-index: 9;
+        }
+                
+        .zoom #text
+        {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            transform: translateY(50%);
+        }
+
+        .content
+        {
+            padding: 100px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .content h2
+        {
+            margin: 0;
+            padding: 0;
+            font-size: 4em;
+        }
+
+        .content p
+        {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -33,5 +89,33 @@
         <h2>This is the Parallax Website Using Javascript</h2>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, delectus minus corrupti sunt repellat a illum laborum nostrum similique dicta eveniet temporibus nemo harum eaque fuga! At, voluptas. Nemo necessitatibus accusamus modi expedita vel cumque odio blanditiis, alias labore voluptatibus explicabo et architecto nobis! Consequuntur iste soluta nostrum delectus excepturi optio nemo fugiat ea asperiores minima eum adipisci officiis velit nihil provident sed saepe, ratione unde ipsum architecto iusto iure deserunt? Eaque eum ad aut, delectus labore nihil veritatis deleniti ea illo unde sed officiis commodi reprehenderit velit quisquam quaerat quos. Facere, quod. Corporis doloribus velit sed unde temporibus sequi nulla reiciendis corrupti minima placeat dicta earum, inventore adipisci totam! Atque excepturi veniam aliquam sequi officia inventore facere sint sunt deserunt, similique enim animi esse unde itaque fugiat corporis voluptatibus minus perspiciatis ad laborum! Quos saepe tempora sit adipisci fugiat placeat, quae corrupti perferendis non dicta ut culpa et, reprehenderit voluptas fuga officia quidem quia tempore atque aspernatur. Obcaecati cumque provident inventore voluptatem, accusantium laboriosam iste accusamus rerum animi facilis porro sed incidunt nostrum ducimus consectetur veniam quis corrupti libero consequatur. Corrupti obcaecati at quibusdam optio sed exercitationem tempore dolorem modi rem? Nostrum quas, distinctio error ullam rerum provident asperiores veniam. Harum fuga, tempore autem dolores officia consectetur eum ipsa aut dignissimos distinctio nam quibusdam, molestias laboriosam minima neque rerum quaerat? Nostrum mollitia, a tenetur non quisquam alias? Repellendus veritatis fugiat tenetur praesentium harum ipsa non repudiandae! Hic quasi illo ut accusantium. Ullam consequuntur laudantium, repellat, quis unde minus nesciunt fugiat quas, tempora facilis optio omnis vero quae ab. Quos saepe ex quaerat, architecto porro vel, dolores reprehenderit alias maiores sit expedita voluptates ratione magnam facilis debitis! Dignissimos voluptatem necessitatibus nemo blanditiis sapiente ipsam qui ad, fugiat dolore officiis iste delectus vitae neque ratione repellendus nostrum praesentium nihil architecto? Cum!</p>
     </section>
+
+    <script>
+        var layer1 = document.getElementById('layer1')
+        scroll = window.pageYOffset
+        document.addEventListener('scroll', function (e) {
+            var offset = window.pageYOffset;
+            scroll = offset;
+            layer1.style.width = (100 + scroll/5) + '%';
+        });
+
+        var layer2 = document.getElementById('layer2')
+        scroll = window.pageYOffset
+        document.addEventListener('scroll', function (e) {
+            var offset = window.pageYOffset;
+            scroll = offset;
+            layer2.style.width = (100 + scroll/5) + '%';
+            layer2.style.left = scroll/50 + '%';
+        });
+
+        var text = document.getElementById('text')
+        scroll = window.pageYOffset
+        document.addEventListener('scroll', function (e) {
+            var offset = window.pageYOffset;
+            scroll = offset;
+            layer2.style.width = (100 + scroll/5) + '%';
+            text.style.top = -scroll/20 + '%';
+        });
+    </script>
 </body>
 </html>
