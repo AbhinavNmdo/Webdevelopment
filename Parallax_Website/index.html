@@ -18,7 +18,7 @@
             height: 1000px;
             position: relative;
             overflow: hidden;
-            background-image: url(/Parallax_Website/bg.jpg);
+            background: url(/Parallax_Website/bg.jpg);
             background-size: cover;
         }
 
@@ -81,41 +81,62 @@
 </head>
 <body>
     <section class="zoom">
-        <img src="/Parallax_Website/mountain1.png" id="layer1">
-        <img src="/Parallax_Website/mountain2.png" id="layer2">
-        <img src="/Parallax_Website/text.png" id="text">
+        <div id="layer1" class="lax lax_preset_spin"><img src="/Parallax_Website/mountain1.png" alt=""></div>
+        <img src="mountain2.png" id="layer2">
+        <img src="text.png" id="text">
     </section>
     <section class="content">
         <h2>This is the Parallax Website Using Javascript</h2>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, delectus minus corrupti sunt repellat a illum laborum nostrum similique dicta eveniet temporibus nemo harum eaque fuga! At, voluptas. Nemo necessitatibus accusamus modi expedita vel cumque odio blanditiis, alias labore voluptatibus explicabo et architecto nobis! Consequuntur iste soluta nostrum delectus excepturi optio nemo fugiat ea asperiores minima eum adipisci officiis velit nihil provident sed saepe, ratione unde ipsum architecto iusto iure deserunt? Eaque eum ad aut, delectus labore nihil veritatis deleniti ea illo unde sed officiis commodi reprehenderit velit quisquam quaerat quos. Facere, quod. Corporis doloribus velit sed unde temporibus sequi nulla reiciendis corrupti minima placeat dicta earum, inventore adipisci totam! Atque excepturi veniam aliquam sequi officia inventore facere sint sunt deserunt, similique enim animi esse unde itaque fugiat corporis voluptatibus minus perspiciatis ad laborum! Quos saepe tempora sit adipisci fugiat placeat, quae corrupti perferendis non dicta ut culpa et, reprehenderit voluptas fuga officia quidem quia tempore atque aspernatur. Obcaecati cumque provident inventore voluptatem, accusantium laboriosam iste accusamus rerum animi facilis porro sed incidunt nostrum ducimus consectetur veniam quis corrupti libero consequatur. Corrupti obcaecati at quibusdam optio sed exercitationem tempore dolorem modi rem? Nostrum quas, distinctio error ullam rerum provident asperiores veniam. Harum fuga, tempore autem dolores officia consectetur eum ipsa aut dignissimos distinctio nam quibusdam, molestias laboriosam minima neque rerum quaerat? Nostrum mollitia, a tenetur non quisquam alias? Repellendus veritatis fugiat tenetur praesentium harum ipsa non repudiandae! Hic quasi illo ut accusantium. Ullam consequuntur laudantium, repellat, quis unde minus nesciunt fugiat quas, tempora facilis optio omnis vero quae ab. Quos saepe ex quaerat, architecto porro vel, dolores reprehenderit alias maiores sit expedita voluptates ratione magnam facilis debitis! Dignissimos voluptatem necessitatibus nemo blanditiis sapiente ipsam qui ad, fugiat dolore officiis iste delectus vitae neque ratione repellendus nostrum praesentium nihil architecto? Cum!</p>
     </section>
 
+    <script src=""></script>
+
     <script>
-        var layer1 = document.getElementById('layer1')
-        scroll = window.pageYOffset
-        document.addEventListener('scroll', function (e) {
-            var offset = window.pageYOffset;
-            scroll = offset;
-            layer1.style.width = (100 + scroll/5) + '%';
-        });
+        // var layer1 = document.getElementById('layer1')
+        // scroll = window.pageYOffset
+        // document.addEventListener('scroll', function (e) {
+        //     var offset = window.pageYOffset;
+        //     scroll = offset;
+        //     layer1.style.width = (100 + scroll/5) + '%';
+        // });
 
-        var layer2 = document.getElementById('layer2')
-        scroll = window.pageYOffset
-        document.addEventListener('scroll', function (e) {
-            var offset = window.pageYOffset;
-            scroll = offset;
-            layer2.style.width = (100 + scroll/5) + '%';
-            layer2.style.left = scroll/50 + '%';
-        });
+        // var layer2 = document.getElementById('layer2')
+        // scroll = window.pageYOffset
+        // document.addEventListener('scroll', function (e) {
+        //     var offset = window.pageYOffset;
+        //     scroll = offset;
+        //     layer2.style.width = (100 + scroll/5) + '%';
+        //     layer2.style.left = scroll/50 + '%';
+        // });
 
-        var text = document.getElementById('text')
-        scroll = window.pageYOffset
-        document.addEventListener('scroll', function (e) {
-            var offset = window.pageYOffset;
-            scroll = offset;
-            layer2.style.width = (100 + scroll/5) + '%';
-            text.style.top = -scroll/20 + '%';
-        });
+        // var text = document.getElementById('text')
+        // scroll = window.pageYOffset
+        // document.addEventListener('scroll', function (e) {
+        //     var offset = window.pageYOffset;
+        //     scroll = offset;
+        //     layer2.style.width = (100 + scroll/5) + '%';
+        //     text.style.top = -scroll/20 + '%';
+        // });
+
+    window.onload = function () {
+        lax.init()
+
+        // Add a driver that we use to control our animations
+        lax.addDriver('scrollY', function () {
+          return window.scrollY
+        })
+
+        // Add animation bindings to elements
+        lax.addElements('.selector', {
+            scrollY: {
+                translateX: [
+                    ["elInY", "elCenterY", "elOutY"],
+                    [0, 'screenWidth/2', 'screenWidth'],
+                ]
+            }
+        })
+    }
     </script>
 </body>
 </html>

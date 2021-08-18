@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laxx</title>
+    <style>
+        .container
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 800px;
+            font-size: 200px;
+        }
+        .scrolldown
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 150px;
+            background-color: aqua;
+            height: 800px;
+        }
+        .scrollup
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 150px;
+            background-color: aqua;
+            height: 800px;
+        }
+    </style>
+<body>
+    <div class="scrolldown">Scroll Down</div>
+    <div class="container lax lax_preset_scaleInOut:167.75:0.6">Animation</div>
+    <div class="scrollup">Scroll Up</div>
+</body>
+<script src="node_modules/lax.js/lib/lax.min.js"></script>
+<script>
+    window.onload = function () {
+        lax.init()
+
+        // Add a driver that we use to control our animations
+        lax.addDriver('scrollY', function () {
+          return window.scrollY
+        })
+
+        // Add animation bindings to elements
+        lax.addElements('.selector', {
+            scrollY: {
+                translateX: [
+                    ["elInY", "elCenterY", "elOutY"],
+                    [0, 'screenWidth/2', 'screenWidth'],
+                ]
+            }
+        })
+    }
+
+    // window.onload = function () {
+    //     lax.init()
+
+    //     document.addEventListener('scroll', function(e) {
+    //     lax.update(window.scrollY)
+    //     }, false)
+    // }    
+</script>
+</html>
