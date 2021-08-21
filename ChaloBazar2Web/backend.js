@@ -4,9 +4,6 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose")
 const port = 80;
 const path = require("path")
-const fs = require("fs");
-const { send } = require("process");
-const { FILE } = require("dns");
 
 
 mongoose.connect('mongodb://localhost:27017/ChaloBazar', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -20,8 +17,12 @@ app.get("/", (req, res) => {
     res.status(200).render('index.html')
 })
 
-app.get("/contact", (req, res) => {
-    res.status(200).render('contact.html')
+app.get("/login", (req, res) => {
+    res.status(200).render('login.html')
+})
+
+app.get("/registration", (req, res) => {
+    res.status(200).render('registration.html')
 })
 
 app.get("/views/contactStyle.css", (req, res) =>{
@@ -31,25 +32,27 @@ app.get("/views/contactStyle.css", (req, res) =>{
 // Mongoose Stuffs
 const contactSchema = new mongoose.Schema({
     name: String,
-    age: Number,
+    pan: String,
     email: String,
     address: String,
     phone: Number,
-    photo: String
+    password: String
 })
 
 const contactSchemaModel = new mongoose.model('Contact', contactSchema)
 
 
-app.post("/contact", (req, res)=>{
+app.post("/registration", (req, res)=>{
     var mydata = new contactSchemaModel(req.body)
     mydata.save(function (error, mydata) {
         if (error){
-            res.render('contact.html')
+            res.render('registration.html')
         }
     });
-    res.render('contact.html')
+    res.render('registration.html')
 })
+
+
 
 app.listen(port, () => {
     console.log("Connected")
