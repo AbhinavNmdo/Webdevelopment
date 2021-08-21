@@ -11,6 +11,7 @@
     <a href="registration">Agent Registration</a>
     <br>
     <a href="login">Agent Login</a>
+    <span th:text=${#authentication.getPrincipal().getname()}>Guest</span>
 </body>
 </html>
         

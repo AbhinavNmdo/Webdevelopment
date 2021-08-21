@@ -52,7 +52,22 @@ app.post("/registration", (req, res)=>{
     res.render('registration.html')
 })
 
+app.post("/login", async(req, res)=>{
+    try {
+        const email = req.body.email
+        const password = req.body.password
 
+        const useremail = await contactSchemaModel.findOne({email:email})
+        if (useremail.password == password) {
+            res.status(201).render('index.html')
+        } else {
+            res.status(400).send("Password incorrect")
+        }
+    } catch (error) {
+        res.status(400).send("Invalid Email or Password")
+    }
+    // res.render('index.html')
+})
 
 app.listen(port, () => {
     console.log("Connected")
