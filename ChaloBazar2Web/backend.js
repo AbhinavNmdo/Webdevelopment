@@ -6,6 +6,7 @@ const port = 80;
 const path = require("path")
 const fs = require("fs");
 const { send } = require("process");
+const { FILE } = require("dns");
 
 
 mongoose.connect('mongodb://localhost:27017/ChaloBazar', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -33,7 +34,8 @@ const contactSchema = new mongoose.Schema({
     age: Number,
     email: String,
     address: String,
-    phone: Number
+    phone: Number,
+    photo: String
 })
 
 const contactSchemaModel = new mongoose.model('Contact', contactSchema)
