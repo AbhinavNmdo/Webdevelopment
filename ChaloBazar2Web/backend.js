@@ -25,9 +25,9 @@ app.get("/registration", (req, res) => {
     res.status(200).render('registration.html')
 })
 
-app.get("/views/contactStyle.css", (req, res) =>{
-    res.status(200).render('contactStyle.css')
-})
+// app.get("/views/contactStyle.css", (req, res) =>{
+//     res.status(200).render('contactStyle.css')
+// })
 
 // Mongoose Stuffs
 const contactSchema = new mongoose.Schema({
@@ -56,17 +56,22 @@ app.post("/login", async(req, res)=>{
     try {
         const email = req.body.email
         const password = req.body.password
+        
 
         const useremail = await contactSchemaModel.findOne({email:email})
         if (useremail.password == password) {
-            res.status(201).render('index.html')
+            res.status(201).render('afterlogin.html')
         } else {
             res.status(400).send("Password incorrect")
         }
+        // console.log(useremail.name)
+        var x = (useremail.name);
+        document.getElementById("wel").innerHTML = x;
     } catch (error) {
         res.status(400).send("Invalid Email or Password")
     }
     // res.render('index.html')
+    
 })
 
 app.listen(port, () => {
