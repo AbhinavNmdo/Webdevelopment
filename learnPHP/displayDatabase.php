@@ -23,7 +23,7 @@ echo $num;
 
 while ($row = mysqli_fetch_assoc($result)) {
     // echo var_dump($row);
-    echo "Hello " . $row['name'] .  ". your email ". $row['email'] ." your address ". $row['address1'];
+    echo "Hello " . ('name') .  ". your email ". ['email'] ." your address ". ['address1'];
     echo "<br>";
 }
 

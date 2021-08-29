@@ -1,20 +1,32 @@
 <?php
     $login = false;
+    $err = false;
+    $emailnotexist = false;
     require "views/_dbconnect.php";
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "SELECT * FROM `agent` WHERE name = '$email' AND password = '$password'";
+        // $sql = "SELECT * FROM `agent` WHERE name = '$email' AND password = '$password'";
+        $sql = "SELECT * FROM `agent` WHERE name = '$email'";
         $result = mysqli_query($conn, $sql);
         $num = mysqli_num_rows($result);
-        if ($num == 1){
-            $login = true;
-            session_start();
-            $_SESSION['email'] = $email;
-            $_SESSION['loggedin'] = true;
+        if($num == 1){
+            while ($row = mysqli_fetch_assoc($result)) {
+                if (password_verify($password, $row['password'])) {
+                    $login = true;
+                    session_start();
+                    $_SESSION['email'] = $email;
+                    $_SESSION['loggedin'] = true;
+                    header("location: Welcome.php");
+                    
+                }
+                else{
+                    $err = true;
+                }
+            }
         }
         else {
-            echo "Something is wrong";
+            $emailnotexist = true;
         }
         
     }
@@ -29,6 +41,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+<style>
+    #div
+    {
+        width: 500px;
+    }
+
+</style>
 <body>
     <?php
         require 'views/_navbar.php';
@@ -40,10 +59,22 @@
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
           </div>";
         }
+        if ($err) {
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <strong>Incorrect Password!</strong>
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+          </div>";
+        }
+        if ($emailnotexist) {
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <strong>User does not exist!</strong>
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+          </div>";
+        }
 
     ?>
-
-    <div class="container my-4">
+    <h1 align="center" class="my-4">Login Here</h1>
+    <div class="container my-4" id="div">
         <form action="/learnPHP/FullyFunctioningLogin/Login.php" method="post">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>

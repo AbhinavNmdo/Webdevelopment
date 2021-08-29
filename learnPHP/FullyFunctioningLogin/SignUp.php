@@ -6,8 +6,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
-    if ($password == $cpassword){
-        $sql = "INSERT INTO `agent` (`name`, `password`, `cpassword`) VALUES ('$email', '$password', '$cpassword')";
+
+    // Checking the user is exist or not
+    $sql = "SELECT * FROM `agent` WHERE `name`='$email'";
+    $result1 = mysqli_query($conn, $sql);
+    $numexists = mysqli_num_rows($result1);
+    if ($numexists > 0) {
+        $exist = true;
+        $error = mysqli_error($conn);
+        echo $error;
+    }
+    else{
+        $exist = false;
+        $error = mysqli_error($conn);
+        echo $error;
+    }
+    if (($password == $cpassword) && $exist == false){
+        $hash = password_hash($password , PASSWORD_DEFAULT);
+        $sql = "INSERT INTO `agent` (`name`, `password`, `cpassword`) VALUES ('$email', '$hash', '$cpassword')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             $successAlert = true;
@@ -28,6 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
 </head>
+<style>
+    #div
+    {
+        width: 500px;
+    }
+</style>
 <body>
     <?php
     require 'views/_navbar.php';
@@ -42,14 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     if ($passerror) {
         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-        <strong>Failed!</strong> Password not matching.
+        <strong>Failed!</strong> Password not matching or Email already exist.
         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>";
     }
     
     ?>
 
-    <div class="container my-4">
+    <h1 align="center" class="my-4">SignUp Here</h1>
+    <div class="container my-4" id="div">
         <form action="/learnPHP/FullyFunctioningLogin/SignUp.php" method="post">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
