@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,11 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>SignUp</title>
 </head>
 <style>
-    #div
-    {
-        width: 500px;
-    }
+#div {
+    width: 500px;
+}
 </style>
+
 <body>
     <?php
     require 'views/_navbar.php';
@@ -90,4 +91,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         </form>
     </div>
 </body>
+
 </html>
