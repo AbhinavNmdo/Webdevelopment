@@ -32,6 +32,7 @@
         require "views/_navbar.php";
         require "views/_dbconnect.php";   
     ?>
+    
 
 
     <div class="container my-4">
@@ -50,10 +51,11 @@
         ?>
     </div>
 
+
     <div class="container1">
         <?php
             $id = $_GET['catid'];
-            $sql = "SELECT * FROM `shops` WHERE `catsh_id` = $id";
+            $sql = "SELECT * FROM `shops` WHERE `catid_shop` = $id";
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
                 $shopid = $row['shop_id'];
@@ -69,7 +71,7 @@
                       <h5 class="card-title">' . $shopname . '</h5>
                       <p class="card-text">' . $shopaddress . '</p>
                     </div>
-                    <button class="btn btn-primary mx-4"><a href="Item.php?itemid=' . $id .'">Learn More</a></button>
+                    <a class="btn btn-primary mx-3 my-4" href="Item.php?itemid=' . $shopid .'">View Products</a>
                   </div>
                 </div>
               </div>';
