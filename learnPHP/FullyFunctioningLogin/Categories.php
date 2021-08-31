@@ -71,7 +71,7 @@
                       <h5 class="card-title">' . $shopname . '</h5>
                       <p class="card-text">' . $shopaddress . '</p>
                     </div>
-                    <a class="btn btn-primary mx-3 my-4" href="Item.php?itemid=' . $shopid .'">View Products</a>
+                    <a class="btn btn-primary mx-3 my-4" href="Item.php?shopid=' . $shopid .'">View Products</a>
                   </div>
                 </div>
               </div>';

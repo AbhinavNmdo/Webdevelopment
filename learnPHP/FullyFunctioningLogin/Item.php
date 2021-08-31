@@ -35,7 +35,7 @@
           require "views/_navbar.php"; 
       ?>
     <?php
-          $id = $_GET['itemid'];
+          $id = $_GET['shopid'];
           $sql = "SELECT * FROM `shops` WHERE `shop_id` = $id";
           $result = mysqli_query($conn, $sql);
           while ($row = mysqli_fetch_assoc($result)){
@@ -69,7 +69,7 @@
 
     <div class="container1">
         <?php
-            $id = $_GET['itemid'];
+            $id = $_GET['shopid'];
             $sql = "SELECT * FROM `items` WHERE `catid_shop_items`=$id";
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
@@ -79,7 +79,7 @@
                 echo '<div class="card mb-3 m-4" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="https://source.unsplash.com/600x600/?shops,jewelery" class="img-fluid rounded-start" alt="...">
+                    <img src="https://source.unsplash.com/600x600/?'. $itemname .'" class="img-fluid rounded-start" alt="...">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">

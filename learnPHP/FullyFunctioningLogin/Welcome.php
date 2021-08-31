@@ -56,7 +56,7 @@
             $desc = $row['cat_desc'];
             echo '<div class="row-md-4 m-4">
             <div class="card" style="width: 18rem;">
-                <img src="https://source.unsplash.com/1600x900/?shirts,apprels" class="card-img-top" alt="...">
+                <img src="https://source.unsplash.com/1600x900/?'. $cat .'" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">'. $cat . '</h5>
                     <p class="card-text">' . substr($desc, 0 , 100) . '...</p>
