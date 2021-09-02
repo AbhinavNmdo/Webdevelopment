@@ -68,7 +68,7 @@
           }
         echo  '</ul>
         <form class="d-flex" action="Search.php" method="GET">
-          <input class="form-control me-2" type="search" name= "search" placeholder="Enter Pincode" aria-label="Search">
+          <input class="form-control me-2" type="search" name= "search" placeholder="Enter Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
