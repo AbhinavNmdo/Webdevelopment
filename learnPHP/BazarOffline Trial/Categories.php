@@ -47,11 +47,12 @@
                     $shopid = $row['shop_id'];
                     $shopname = $row['shop_name'];
                     $shopaddress = $row['shop_address'];
+                    $profile = $row['shop_image'];
                     echo '<div class="col-md-6">
                     <div class="card mb-3 m-4">
                     <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="https://source.unsplash.com/600x715/?shops,jewelery" class="img-fluid rounded-start" alt="...">
+                        <img src="'.$profile.'" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

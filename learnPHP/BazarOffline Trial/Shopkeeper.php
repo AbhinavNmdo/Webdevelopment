@@ -1,11 +1,12 @@
 <?php
 session_start();
+$ids = $_GET['shopids'];
 ?>
 <?php
 require "views/_dbconnect.php";
-$method = $_SERVER['REQUEST_METHOD'];
-if ($method == "POST") {
-    $ids = $_GET['shopids'];
+// $method = $_SERVER['REQUEST_METHOD'];
+if (isset($_POST['add'])) {
+    // $ids = $_GET['shopids'];
     $sql12 = "SELECT * FROM `shopkeeper` WHERE `shop_id` = $ids";
     $result12 = mysqli_query($conn, $sql12);
     while ($row = mysqli_fetch_assoc($result12)) {
@@ -16,6 +17,21 @@ if ($method == "POST") {
         $result = mysqli_query($conn, $sql);
     }
 }
+?>
+<?php
+    if (isset($_POST['upload'])){
+        $target = basename($_FILES['profile']['name']);
+        $img_tmp = $_FILES['profile']['tmp_name'];
+        $img = $_FILES['profile']['name'];
+        $sql = "UPDATE `shopkeeper` SET `shop_image`='$img' WHERE `shop_id` = '$ids'";
+        $result = mysqli_query($conn, $sql);
+        if (move_uploaded_file($img_tmp, $target)){
+            echo 'Success';
+        }
+        else{
+            echo 'Failed';
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +53,14 @@ if ($method == "POST") {
     {
         width: 300px;
     }
+    .res
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 100px;
+    }
     </style>
 </head>
 
@@ -49,17 +73,18 @@ if ($method == "POST") {
     <!-- Profile for Shopkeepers -->
     <div class="container">
         <?php
-        $get = $_GET['shopids'];
-        $sql = "SELECT * FROM `shopkeeper` WHERE `shop_id` = $get";
+        // $get = $_GET['shopids'];
+        $sql = "SELECT * FROM `shopkeeper` WHERE `shop_id` = $ids";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             $shopname = $row['shop_name'];
             $shopaddress = $row['shop_address'];
             $shopzip = $row['shop_zip'];
+            $profile = $row['shop_image'];
             echo '<div class="container responsive">
             <div class="col-lg-4 m-4 responsive">
             <!-- <svg class="bd-placeholder-img rounded-circle responsive" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
-            <img class="bd-placeholder-img rounded-circle responsive" src="https://source.unsplash.com/1600x900/?profile" alt="" width="200px" height="200px">
+            <img class="bd-placeholder-img rounded-circle responsive" src=" ' .$profile. ' " alt="" width="200px" height="200px">
             <h2 style="margin-top: 15px;">' . $shopname . '</h2>
             <p>' . $shopaddress . '</p>
             <p>'.$shopzip.'</p>
@@ -73,7 +98,7 @@ if ($method == "POST") {
     <!-- Security for shopkeepers -->
     <?php
     // $user = $_GET['shopids'];
-    $sql = "SELECT * FROM `shopkeeper` WHERE `shop_id` = '$get'";
+    $sql = "SELECT * FROM `shopkeeper` WHERE `shop_id` = '$ids'";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $active = $row['shop_username'];
@@ -90,7 +115,7 @@ if ($method == "POST") {
         <div class="row">
             <?php
             // $getid = $_GET['shopids'];
-            $sql = "SELECT * FROM `items` WHERE `itemshop_id` = $get";
+            $sql = "SELECT * FROM `items` WHERE `itemshop_id` = $ids";
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
                 $itemname = $row['item_name'];
@@ -124,9 +149,24 @@ if ($method == "POST") {
                 <label for="exampleInputPassword1" class="form-label">Description</label>
                 <input type="textarea" class="form-control" id="desc" name="itemdesc">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="add" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
+    <!-- Upload Profile -->
+    <hr>
+    <h2 style="margin-top: 20px;" align="center">Wanna Update your Profile</h2>
+    <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="POST" enctype="multipart/form-data">
+        <div class="res">
+                <div class="mb-3">
+                    <label for="profile">Update Your Profile</label>
+                    <input type="file" name="profile" id="profile">
+                </div>
+                <div class="mb-3">
+                    <input type="submit" name="upload" id="upload">
+                </div>
+        </div>
+    </form>
 
 
 
