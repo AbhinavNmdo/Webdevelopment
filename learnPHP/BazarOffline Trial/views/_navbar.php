@@ -38,9 +38,9 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
 
-          $sql2 = "SELECT * FROM `categories`";
-          $result2 = mysqli_query($conn, $sql2);
-          while ($row = mysqli_fetch_assoc($result2)){
+          $sqllli = "SELECT * FROM `categories`";
+          $resultlli = mysqli_query($conn, $sqllli);
+          while ($row = mysqli_fetch_assoc($resultlli)){
             $id = $row['cat_id'];
             $categories = $row['cat_name'];
             echo '<li><a class="dropdown-item" href="Categories.php?catid=' . $id . '">'. $categories .'</a></li>';
