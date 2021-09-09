@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Welcome</title>
+    <link rel="stylesheet" href="views/Welcomestyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&display=swap" rel="stylesheet">
 </head>
 <style>
 .div {
@@ -28,13 +30,21 @@
     require 'views/_dbconnect.php';
     require 'views/_navbar.php';
     ?>
+    <div id="header">
+        <h2 align="left">Welcome to BazarOffline.</h2>
+        <p align="left">You can find a shops and products of jabalpur here.</p>
+    </div>
 
-    <div class="container my-4">
+    <div id="heading1">
+        <h2>Category</h2>
+    </div>
+
+    <!-- <div class="container my-4">
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Welcome!</h4>
             <p>If you want the people in your local area to avail your services or use your products then you must focus on offline marketing. It gives you a wonderful opportunity to establish a good relationship with the people. This will increase customer loyalty.</p>
         </div>
-    </div>
+    </div> -->
 
 
     <!-- Cards -->

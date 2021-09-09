@@ -26,7 +26,7 @@
     <title>BazarOffline</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <img src="Images/logo.png" alt="" style="width: 70px; margin-right:
           10px;">
@@ -69,9 +69,9 @@
               echo '<li class="nav-item">
                 <a class="nav-link" href="Logout.php">Logout</a>
               </li>';
-
+              
               echo '<li class="nav-item">
-                <a class="nav-link">Welcome! '. $_SESSION['username'] .'</a>
+                <a href="Shopkeeper.php?shopids='. $_SESSION['shopid'] .'" class="btn btn-outline-secondary" style="margin-top: 2px; margin-left: 8px;">Profile: '. $_SESSION['ownername'] .'</a>
               </li>';
               }
               echo '</ul>

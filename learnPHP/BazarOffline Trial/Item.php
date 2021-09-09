@@ -10,8 +10,15 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" media="screen and (max-width: 1010px)" href="views/phone.css">
     <title>Items</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&display=swap" rel="stylesheet">
 </head>
 <style>
+    *
+    {
+        font-family: 'Baloo Chettan 2', cursive;
+        scroll-behavior: smooth;
+    }
+
     .responsive
     {
         display: flex;

@@ -14,7 +14,7 @@
             $shopzip = $row['shop_zip'];
             $itemname = $_POST['itemname'];
             $itemdesc = $_POST['itemdesc'];
-            $sql = "INSERT INTO `items`(`item_name`, `item_desc`, `itemshop_id`, `item_zip`) VALUES ('$itemname','$itemdesc','$ids','$shopzip')";
+            $sql = "INSERT INTO `items`(`item_name`, `item_desc`, `itemshop_id`, `item_zip`) VALUES ('$itemname','$itemdesc','$shopkeeperid','$shopzip')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 $success = true;
@@ -57,7 +57,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&display=swap" rel="stylesheet">
 </head>
+<style>
+    *
+    {
+        font-family: 'Baloo Chettan 2', cursive;
+        scroll-behavior: smooth;
+    }
+
+</style>
 
 <body>
     <?php
