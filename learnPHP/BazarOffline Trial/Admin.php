@@ -13,14 +13,20 @@ require "views/_dbconnect.php";
         $category = $_POST['select'];
         $zip = $_POST['zip'];
         $shoptiming = $_POST['timing'];
+        $maplink = $_POST['map'];
         
-        $sql1 = "SELECT * FROM `shopkeeper` WHERE `shop_username` = '$username11'";
-        $result1 = mysqli_query($conn, $sql1);
-        $num = mysqli_num_rows($result1);
-        if ($num==0){
-            $sql = "INSERT INTO `shopkeeper`(`catshop_id`, `shop_name`, `shop_owner`, `shop_username`, `shop_email`, `shop_address`, `shop_password`, `shop_cpassword`, `shop_zip`, `shop_timing`) VALUES ('$category','$shopname','$ownername','$username11','$shopemail','$shopaddress','$pass','$cpass','$zip', '$shoptiming')";
-            $result = mysqli_query($conn, $sql);
-            $done = true;
+        if(!empty($username11)){
+            $sql1 = "SELECT * FROM `shopkeeper` WHERE `shop_username` = '$username11'";
+            $result1 = mysqli_query($conn, $sql1);
+            $num = mysqli_num_rows($result1);
+            if ($num==0){
+                $sql = "INSERT INTO `shopkeeper`(`catshop_id`, `shop_name`, `shop_owner`, `shop_username`, `shop_email`, `shop_address`, `shop_password`, `shop_cpassword`, `shop_zip`, `shop_timing`, `shop_maps`) VALUES ('$category','$shopname','$ownername','$username11','$shopemail','$shopaddress','$pass','$cpass','$zip', '$shoptiming', '$maplink')";
+                $result = mysqli_query($conn, $sql);
+                $done = true;
+            }
+            else{
+                $exist = true;
+            }
         }
         else{
             $exist = true;
@@ -32,8 +38,13 @@ require "views/_dbconnect.php";
     if (isset($_POST['catsubmit'])){
         $catname = $_POST['catname'];
         $catdesc = $_POST['catdesc'];
-        $sql = "INSERT INTO `categories`(`cat_name`, `cat_desc`) VALUES ('$catname','$catdesc')";
-        $result = mysqli_query($conn, $sql);
+        if(!empty($catname) or !empty($catdesc)){
+            $sql = "INSERT INTO `categories`(`cat_name`, `cat_desc`) VALUES ('$catname','$catdesc')";
+            $result = mysqli_query($conn, $sql);
+        }
+        else{
+            $exist = true;
+        }
     }
 
     if(isset($_POST['agentsubmit'])){
@@ -45,8 +56,13 @@ require "views/_dbconnect.php";
         $agentpass = $_POST['agent_password'];
         $agentcpass = $_POST['agent_cpassword'];
 
-        $agentsql = "INSERT INTO `agent`(`agent_name`, `agent_username`, `agent_email`, `agent_address`, `agent_mobile`, `agent_password`, `agent_cpassword`) VALUES ('$agentname','$agentusername','$agentemail','$agentaddress','$agentmobile','$agentpass','$agentcpass')";
-        $resultagent = mysqli_query($conn, $agentsql);
+        if(!empty($agentusername)){
+            $agentsql = "INSERT INTO `agent`(`agent_name`, `agent_username`, `agent_email`, `agent_address`, `agent_mobile`, `agent_password`, `agent_cpassword`) VALUES ('$agentname','$agentusername','$agentemail','$agentaddress','$agentmobile','$agentpass','$agentcpass')";
+            $resultagent = mysqli_query($conn, $agentsql);
+        }
+        else{
+            $exist = true;
+        }
     }
 
 ?>
@@ -151,6 +167,10 @@ require "views/_dbconnect.php";
                         <div class="mb-3">
                             <label for="zip" class="form-label">Shop Zip</label>
                             <input type="text" class="form-control" id="zip" name="zip">
+                        </div>
+                        <div class="mb-3">
+                            <label for="map" class="form-label">Paste Map link</label>
+                            <input type="text" class="form-control" id="map" name="map">
                         </div>
                         <div class="mb-3">
                             <label for="timing" class="form-label">Timing</label>

@@ -118,10 +118,10 @@ if (isset($_POST['add'])) {
             <hr>
             <a href="Profile.php?shopkeeperid='. $ids .'" class="btn btn-info">Update Profile / Add Items</a>
             <br>
-            <br>
-          </div>
             </div>
-            <hr>';
+            </div>
+            <hr>
+            <h2 style="margin: 40px;" align="center">Products Available</h2>';
         }
         ?>
     </div>
@@ -154,11 +154,11 @@ if (isset($_POST['add'])) {
                 
                 echo '<div class="col-md-4">
                     <div class="row-md-4 m-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://source.unsplash.com/1600x900/?'. $itemname .'" class="card-img-top" alt="...">
+                    <div class="card" style="height: 370px; border-radius: 15px;">
+                        <img src="https://source.unsplash.com/1600x900/?'. $itemname .'" class="card-img-top" alt="..." style="border-radius: 15px;">
                         <div class="card-body">
                             <h5 class="card-title">' . $itemname . '</h5>
-                            <p class="card-text">' . substr($itemdesc, 0, 100) . '...</p>
+                            <p class="card-text">' . substr($itemdesc, 0, 100) . '</p>
                             <a class="btn btn-danger" href="DeleteItem.php?itemid='. $itemid .'">Delete Item</a>
                         </form>
                         </div>

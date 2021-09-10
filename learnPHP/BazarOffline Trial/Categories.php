@@ -46,7 +46,7 @@
                 $cat = $row['cat_name'];
                 $desc = $row['cat_desc'];
                 echo '<div id="heading">
-                <h2>Shops in '. $cat .'</h2>
+                <h2 style="margin: 20px;">Category: '. $cat .'</h2>
             </div>';
             }
         ?>
@@ -67,8 +67,8 @@
                     $shoptiming = $row['shop_timing'];
                     echo '<div class="col-md-4">
                     <div class="row-md-4 m-4">
-                    <div class="card rounded-3">
-                        <img src="https://source.unsplash.com/1600x900/?'. $cat .'" class="card-img-top rounded-3" alt="Oops">
+                    <div class="card" style="height: 370px; border-radius: 15px;">
+                        <img src="https://source.unsplash.com/1600x900/?'. $cat .'" class="card-img-top" alt="Oops" style="border-radius: 15px;">
                         <div class="card-body">
                             <h5 class="card-title">'. $shopname . '</h5>
                             <p class="card-text">' . $shopaddress . '</p>
