@@ -1,0 +1,17 @@
+const orderNumGenerator = async (req, res) => {
+    var min = 100;
+    var max = 999;
+    res.currentOrderNumber = 
+            Math.floor(
+            Math.random() * (max - min + 1) + min
+            );
+}
+
+const randomNumGenerator = async (req, res) => {
+    var min = 10000;
+    var max = 99999;
+    res.randomNumber = 
+            Math.floor(
+            Math.random() * (max - min + 1) + min
+            );
+}
