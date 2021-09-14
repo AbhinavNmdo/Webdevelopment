@@ -8,15 +8,19 @@
     $failed = false;
 
     if (isset($_POST['item'])) {
-        $itemsql = "SELECT * FROM `shopkeeper` WHERE `shop_id` = $shopkeeperid";
-        $resultitem = mysqli_query($conn, $itemsql);
-        while ($row = mysqli_fetch_assoc($resultitem)) {
-            $shopzip = $row['shop_zip'];
+        $collection = $db->shopkeeper;
+        $shop = $collection->findOne(['shop' => $shopkeeperid]);
+            $shopzip = $shop['shop_zip'];
             $itemname = $_POST['itemname'];
             $itemdesc = $_POST['itemdesc'];
             if(!empty($itemname) or !empty($itemdesc)){
-                    $sql = "INSERT INTO `items`(`item_name`, `item_desc`, `itemshop_id`, `item_zip`) VALUES ('$itemname','$itemdesc','$shopkeeperid','$shopzip')";
-                $result = mysqli_query($conn, $sql);
+                $document = array(
+                    "name" => "$itemname",
+                    "description" => "$itemdesc",
+                    "shop_id" => "$shopkeeperid",
+                    "shop_zip" => "$shopzip"
+                );
+                $result = $collection->insertOne($document);
                 if ($result) {
                     $success = true;
                     header("location: Shopkeeper.php?shopids=$shopkeeperid");
@@ -28,31 +32,32 @@
                 $failed = true;
             }
         }
-    }
-    if (isset($_POST['profile'])){
-        $target = basename($_FILES['profile']['name']);
-        $img_tmp = $_FILES['profile']['tmp_name'];
-        $img = $_FILES['profile']['name'];
+    
+    // Need to update it    
+    // if (isset($_POST['profile'])){
+    //     $target = basename($_FILES['profile']['name']);
+    //     $img_tmp = $_FILES['profile']['tmp_name'];
+    //     $img = $_FILES['profile']['name'];
 
-        $fileext = explode('.', $img);
-        $filecheck = strtolower(end($fileext));
-        $filestored = array('jpg', 'png', 'jpeg');
+    //     $fileext = explode('.', $img);
+    //     $filecheck = strtolower(end($fileext));
+    //     $filestored = array('jpg', 'png', 'jpeg');
 
-        if(in_array($filecheck, $filestored)){
-            $profilesql = "UPDATE `shopkeeper` SET `shop_image`='$img' WHERE `shop_id` = '$shopkeeperid'";
-            $resultprofile = mysqli_query($conn, $profilesql);
-            if (move_uploaded_file($img_tmp, $target)){
-                $success = true;
-                header("location: Shopkeeper.php?shopids=$shopkeeperid");
-            }
-            else{
-                $failed = true;
-            }
-        }
-        else{
-            $failed = true;
-        }
-    }
+    //     if(in_array($filecheck, $filestored)){
+    //         $profilesql = "UPDATE `shopkeeper` SET `shop_image`='$img' WHERE `shop_id` = '$shopkeeperid'";
+    //         $resultprofile = mysqli_query($conn, $profilesql);
+    //         if (move_uploaded_file($img_tmp, $target)){
+    //             $success = true;
+    //             header("location: Shopkeeper.php?shopids=$shopkeeperid");
+    //         }
+    //         else{
+    //             $failed = true;
+    //         }
+    //     }
+    //     else{
+    //         $failed = true;
+    //     }
+    // }
     if (isset($_POST['chtiming'])){
         $timing = $_POST['timing'];
         if(!empty($timing)){
@@ -159,7 +164,7 @@
                 </div>
             </div>
             <!-- Update Profile Pic -->
-            <div class="col-md-4 my-4">
+            <!-- <div class="col-md-4 my-4">
                 <div class="card rounded-3">
                     <h2 style="margin-top: 20px;" align="center">Update Profile Pic</h2>
                     <form class="m-4" action="<?php "Shopkeeper.php?shopids='. $shopkeeperid .'" ?>" method="POST"
@@ -175,7 +180,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
             <!-- Update timing of shop -->
             <div class="col-md-4 my-4">
                 <div class="card rounded-3">
