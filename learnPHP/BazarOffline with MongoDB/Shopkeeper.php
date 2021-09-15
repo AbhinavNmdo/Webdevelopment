@@ -50,7 +50,7 @@ $id = $_GET['shopids'];
     <div class="container">
         <?php
         $collection = $db->shopkeeper;
-        $profile = $collection->findOne(['_id' => new MongoDB\BSON\ObjectID($id)]);
+        $profile = $collection->findOne(['_id' => $_SESSION['shopid']]);
             echo '<div class="container responsive">
             <div class="col-lg-4 m-4 responsive">
             <img class="bd-placeholder-img rounded-circle responsive" src=" shop.jpg " alt="" width="200px" height="200px">
@@ -75,6 +75,9 @@ $id = $_GET['shopids'];
     if ($_SESSION['username'] != $active) {
         header("location: Logout.php");
     }
+    elseif($id != $_SESSION['shopid']){
+        header("location: Logout.php");
+    }
     // Making more stable security
     ?>
 
@@ -83,8 +86,8 @@ $id = $_GET['shopids'];
     <div class="container">
         <div class="row">
             <?php
-            $collection = $db->shopkeeper;
-            $items = $collection->find(['shop' => $id]);
+            $collection = $db->items;
+            $items = $collection->find(['shop_id' => $id]);
             foreach($items as $item){
                 $desc = $item['description'];
                 echo '<div class="col-md-4">

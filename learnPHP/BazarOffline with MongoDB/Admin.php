@@ -1,5 +1,9 @@
 <?php
-
+ob_start();
+session_start();
+if(!isset($_SESSION['admin'])){
+    header("location: Login.php");
+}
 use MongoDB\Operation\FindOne;
 
 $exist = false;
@@ -277,7 +281,9 @@ require "views/_dbconnect.php";
             </div>    
         </div>
     </div>
-
+<div class="container m-4">
+    <a href="Logout.php" class="btn btn-danger m-4">Logout</a>
+</div>
 
 
 
@@ -288,6 +294,8 @@ function getvalue() {
     var cvalue = document.getElementsByName("select").value;
     console.log("cvalue");
 }
+
+
 </script>
 
 </html>

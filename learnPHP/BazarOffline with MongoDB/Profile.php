@@ -8,9 +8,8 @@
     $failed = false;
 
     if (isset($_POST['item'])) {
-        $collection = $db->shopkeeper;
-        $shop = $collection->findOne(['shop' => $shopkeeperid]);
-            $shopzip = $shop['shop_zip'];
+        $collection = $db->items;
+            $shopzip = $_SESSION['shopzip'];
             $itemname = $_POST['itemname'];
             $itemdesc = $_POST['itemdesc'];
             if(!empty($itemname) or !empty($itemdesc)){
@@ -61,9 +60,12 @@
     if (isset($_POST['chtiming'])){
         $timing = $_POST['timing'];
         if(!empty($timing)){
-            $timingsql = "UPDATE `shopkeeper` SET `shop_timing`='$timing' WHERE `shop_id` = '$shopkeeperid'";
-            $resulttiming = mysqli_query($conn, $timingsql);
-            if ($resulttiming) {
+            $collection = $db->shopkeeper;
+            $update = $collection->updateOne(
+                ['_id' => new MongoDB\BSON\ObjectID($shopkeeperid)],
+                ['$set' => ['Timing' => $timing]]
+            );
+            if ($update) {
                 $success = true;
                 header("location: Shopkeeper.php?shopids=$shopkeeperid");
             } else {
@@ -77,9 +79,12 @@
     if(isset($_POST['mapsubmit'])){
         $maplink = $_POST['maps'];
         if(!empty($maplink)){
-            $sqlmap = "UPDATE `shopkeeper` SET `shop_maps`='$maplink' WHERE `shop_id` = $shopkeeperid";
-            $resultmap = mysqli_query($conn, $sqlmap);
-            if ($resultmap) {
+            $collection = $db->shopkeeper;
+            $update = $collection->updateOne(
+                ['_id' => new MongoDB\BSON\ObjectID($shopkeeperid)],
+                ['$set' => ['Map' => $maplink]]
+            );
+            if ($update) {
                 $success = true;
                 header("location: Shopkeeper.php?shopids=$shopkeeperid");
             } else {
@@ -129,17 +134,13 @@
 
     <!-- Security for Shopkeepers -->
     <?php
-    $sqlforcheck = "SELECT * FROM `shopkeeper` WHERE `shop_id` = $shopkeeperid";
-    $resultforcheck = mysqli_query($conn, $sqlforcheck);
-    while ($row = mysqli_fetch_assoc($resultforcheck)) {
-        $username156 = $row['shop_username'];
-        if ($_SESSION['username'] != $username156) {
+    $collection = $db->shopkeeper;
+    $user = $collection->findOne(['_id' => new MongoDB\BSON\ObjectID($shopkeeperid)]);
+        $active = $user['Username'];
+        if ($_SESSION['username'] != $active) {
             header("location: Logout.php");
             header("location: Login.php");
         }
-    }
-
-
     ?>
 
 
@@ -167,7 +168,7 @@
             <!-- <div class="col-md-4 my-4">
                 <div class="card rounded-3">
                     <h2 style="margin-top: 20px;" align="center">Update Profile Pic</h2>
-                    <form class="m-4" action="<?php "Shopkeeper.php?shopids='. $shopkeeperid .'" ?>" method="POST"
+                    <form class="m-4" action="<?php // "Shopkeeper.php?shopids='. $shopkeeperid .'" ?>" method="POST"
                         enctype="multipart/form-data">
                         <div class="res">
                             <div class="mb-3">

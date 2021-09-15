@@ -66,7 +66,7 @@ $id = $_GET['shopid'];
         <div class="row">
             <?php
             $collection = $db->items;
-            $items = $collection->find(['shop' => $id]);
+            $items = $collection->find(['shop_id' => $id]);
             foreach($items as $item){
                 echo '<div class="col-md-4">
                         <div class="row-md-4 m-4">
@@ -74,7 +74,7 @@ $id = $_GET['shopid'];
                             <img src="https://source.unsplash.com/1600x900/?' . $item['name'] . '" class="card-img-top" alt="..." style="border-radius: 15px;">
                             <div class="card-body">
                                 <h5 class="card-title">' . $item['name'] . '</h5>
-                                <p class="card-text">' . $item['description '] . '</p>
+                                <p class="card-text">' . $item['description'] . '</p>
                             </div>
                         </div>
                     </div>
