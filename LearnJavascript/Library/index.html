@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinav's Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Library</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Alert -->
+    <div id="msgalert"></div>
+
+    <!-- Form -->
+    <div class="container my-4" style="width: 500px;">
+        <h2 align="center" class="">Form</h2>
+        <form id="librarybook">
+            <div class="mb-3">
+                <label for="bookname" class="form-label">Book Name</label>
+                <input type="text" class="form-control" id="bookname" name="bookname" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="bookauthor" class="form-label">Book Author</label>
+                <input type="text" class="form-control" id="bookauthor" name="bookauthor">
+            </div>
+            <div class="mb-3">
+                <label for="booktype">Select Category</label>
+                <select class="form-select" id="booktype" name="booktype" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option id="science" value="science">Science</option>
+                    <option id="cooking" value="cooking">Cooking</option>
+                    <option id="programming" value="programming">Programming</option>
+                  </select>
+            </div>
+            <!-- <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Book Type</legend>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="science" value="science"
+                                checked>
+                            <label class="form-check-label" for="science">
+                                science
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="programming"
+                                value="programming">
+                            <label class="form-check-label" for="programming">
+                                programming
+                            </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <input class="form-check-input" type="radio" name="type" id="cooking" value="cooking">
+                            <label class="form-check-label" for="cooking">
+                                cooking
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset> -->
+
+            <button id="addbook" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Table -->
+    <div class="container" style="width: 600px;">
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+<script src="index.js"></script>
+
+</html>
