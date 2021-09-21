@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlarmApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: auto;
+        }
+
+        body {
+            background-color: rgba(86, 39, 131, 0.808);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="mb-3">
+                <label for="alarmtime" class="form-label" style="color: white;">Enter Time</label>
+                <input type="text" class="form-control" placeholder="Enter Alarm" id="alarmtime">
+            </div>
+            <div class="mb-3">
+                <select class="form-control" name="alarmtype" id="alarmtype">
+                    <option value="null" selected>--Select Format--</option>
+                    <option value="date">Date</option>
+                    <option value="hour">Hour</option>
+                    <option value="min">Minute</option>
+                    <option value="sec">Second</option>
+                </select>
+            </div>
+            <button type="submittime" id="submittime" class="btn btn-primary">Set Alarm</button>
+        </form>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+
+</html>
