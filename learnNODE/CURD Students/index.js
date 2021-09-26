@@ -62,6 +62,17 @@ app.post('/registration', async(req, res) => {
     }
 });
 
+app.patch('/students/:id', async (req, res)=>{
+    try {
+        const _id = req.params.id;
+        const updateStud = await student.findByIdAndUpdate(_id, req.body);
+        res.status(201).send(updateStud);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send('Error Occured');
+    }
+})
+
 app.listen(port, ()=>{
     console.log(`Listning to the ${port}`);
 });
