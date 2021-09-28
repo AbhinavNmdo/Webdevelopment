@@ -1,0 +1,105 @@
+*
+{
+    font-family: 'Baloo Chettan 2', cursive;
+    scroll-behavior: smooth;
+}
+
+#header
+{
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    position: relative;
+}
+
+#header2 h2
+{
+    /* margin: auto; */
+    font-size: 50px;
+    margin-left: 30px;
+}
+
+#header2 p
+{
+    /* margin: auto; */
+    font-size: 20px;
+    margin-left: 30px;
+    
+}
+
+#header::before
+{
+    content: "";
+    background: url('../Images/bg.png') no-repeat center center/cover;
+    /* background-color: aqua; */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+}
+
+#heading1
+{
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#heading1 h2
+{
+    font-size: 40px;
+}
+
+#header2
+{
+    margin-bottom: 50px;
+}
+
+#loading
+{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: white url(../Images/loading2.gif) no-repeat center;
+    z-index: 111;
+
+} 
+.div {
+    margin: 5px 50px;
+}
+
+#radius {
+    border-radius: 15px;
+}
+
+#popupmain {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(68, 68, 68, 0.5);
+    z-index: 1001;
+}
+
+#popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    height: auto;
+    width: 325px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+
+}

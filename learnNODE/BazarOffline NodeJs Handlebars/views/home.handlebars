@@ -16,7 +16,7 @@
     <!-- Cards -->
     <div class="container">
         <div class="row">
-            {{#each category}}
+            {{#each cat}}
             <div class="col-md-4">
                 <div class="row-md-4 m-4">
                     <div class="card" style="height: auto; border-radius: 15px;">
@@ -24,8 +24,8 @@
                             style="border-radius: 15px;" id="catImage">
                         <div class="card-body">
                             <h5 class="card-title">{{this.name}}</h5>
-                            <p class="card-text">Description</p>
-                            <a href="/" class="btn btn-primary">View More</a>
+                            <p class="card-text">{{this.description}}</p>
+                            <a href="/" class="btn btn-primary">View {{this.name}}</a>
                         </div>
                     </div>
                 </div>

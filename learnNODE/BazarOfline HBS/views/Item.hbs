@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen and (max-width: 1010px)" href="views/phone.css">
+    <title>Items</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<style>
+    * {
+        font-family: 'Baloo Chettan 2', cursive;
+        scroll-behavior: smooth;
+    }
+
+    .responsive {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #ownerimage {
+        padding-top: 200px;
+    }
+</style>
+
+<body>
+
+    <!-- Shopkeeper Profile -->
+    <div class="container responsive">
+        <div class="col-lg-4 m-4 responsive">
+            <h2 style="margin-top: 15px;">Name</h2>
+            <p style="text-align: center;">Address</p>
+            <p class="card-text">Shop Timing : </p>
+            <a href="#" class="btn btn-info" target="_blank">Show in Maps</a>
+        </div>
+    </div>
+    <hr>
+    <h2 align="center" style="margin: 40px;">Products Available</h2>
+
+
+    <!-- Displaying items of the shop -->
+    <div class="container my-4">
+        <div class="row">
+            {{#each items}}
+            <div class="col-md-4">
+                <div class="row-md-4 m-4">
+                    <div class="card" style="height: auto; border-radius: 15px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.name}}</h5>
+                            <p class="card-text">{{this.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        {{> _footer}}
+    </div>
+
+</body>
+
+</html>
