@@ -17,6 +17,10 @@ export default function Textform(props) {
         setText(lowerText);
     }
 
+    const handleForClear = () => {
+        setText('');
+    }
+
     return (
         <>
         <div className="form-floating">
@@ -28,9 +32,15 @@ export default function Textform(props) {
             id="textarea"
             ></textarea>
             <label htmlFor="textarea">Type Here</label>
-            <button className="btn btn-primary m-4" onClick={handleForUpper}>Convert to UpperCase</button>
-            <button className="btn btn-primary m-4" onClick={handleForLower}>Convert to LowerCase</button>
         </div>
+        <button className="btn btn-primary m-3" onClick={handleForUpper}>Convert to UpperCase</button>
+        <button className="btn btn-primary m-3" onClick={handleForLower}>Convert to LowerCase</button>
+        <button className="btn btn-danger m-3" onClick={handleForClear}>Clear All</button>
+        <h4 align="center">{text.length} Characters</h4>
+        <h4 align="center">{text.split(" ").length} Words</h4>
+        <h4 align="center">{0.008 * text.split(" ").length} Minutes to Read</h4>
+        <h2 align="center" className="my-4">Preview</h2>
+        <h5 align="center">{text}</h5>
         </>
     );
 }
