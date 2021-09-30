@@ -43,13 +43,13 @@ export default function Textform(props) {
             ></textarea>
             <label htmlFor="textarea">Type Here</label>
         </div>
-        <button className="btn btn-primary m-3" onClick={handleForUpper}>Convert to UpperCase</button>
-        <button className="btn btn-primary m-3" onClick={handleForLower}>Convert to LowerCase</button>
-        <button className="btn btn-danger m-3" onClick={handleForClear}>Clear All</button>
-        <button className="btn btn-primary m-3" onClick={handleForCopy}>Copy to Clipboard</button>
+        <button disabled={text.length == 0} className="btn btn-primary m-3" onClick={handleForUpper}>Convert to UpperCase</button>
+        <button disabled={text.length == 0} className="btn btn-primary m-3" onClick={handleForLower}>Convert to LowerCase</button>
+        <button disabled={text.length == 0} className="btn btn-danger m-3" onClick={handleForClear}>Clear All</button>
+        <button disabled={text.length == 0} className="btn btn-primary m-3" onClick={handleForCopy}>Copy to Clipboard</button>
         <h4 align="center" style={{color: props.mode==='dark'?'white':'black'}}>{text.length} Characters</h4>
-        <h4 align="center" style={{color: props.mode==='dark'?'white':'black'}}>{text.split(" ").length }  Words</h4>
-        <h4 align="center" style={{color: props.mode==='dark'?'white':'black'}}>{0.008 * text.split(" ").length} Minutes to Read</h4>
+        <h4 align="center" style={{color: props.mode==='dark'?'white':'black'}}>{text.split(/\s+/).filter((element)=>{return element.length!=0}).length }  Words</h4>
+        <h4 align="center" style={{color: props.mode==='dark'?'white':'black'}}>{0.008 * text.split(" ").filter((element)=>{return element.length!=0}).length} Minutes to Read</h4>
         <h2 align="center" style={{color: props.mode==='dark'?'white':'black'}} className="my-4">Preview</h2>
         <h5 align="center" style={{color: props.mode==='dark'?'white':'black'}}>{text.length>0?text:"Enter Some Text First"}</h5>
         </>

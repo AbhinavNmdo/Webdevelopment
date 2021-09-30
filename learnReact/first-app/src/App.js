@@ -4,7 +4,7 @@ import Textform from "./components/Textform";
 import Alert from "./components/Alert";
 import React, { useState } from "react";
 import About from "./components/About";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App(props) {
   const [mode, setMode] = useState("light");
@@ -17,7 +17,7 @@ function App(props) {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 2000);
   };
 
   const toggleMode = () => {
