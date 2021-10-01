@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positioning</title>
+    <style>
+        *
+        {
+            padding: 0%;
+            margin: 0%;
+        }
+
+        .first
+        {
+            height: 100vh;
+            width: 100%;
+            background-color: black;
+        }
+
+        .child1
+        {
+            position: relative;
+            top: 5rem;
+            left: 7rem;
+            height: 30rem;
+            width: 30rem;
+            background-color: green;
+        }
+
+        .child2
+        {
+            position: absolute;
+            left: 5rem;
+            top: 5rem;
+            height: 9rem;
+            width: 9rem;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="first">
+        <div class="child1">
+            <div class="child2">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

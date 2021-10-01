@@ -1,0 +1,34 @@
+body
+{
+    background-color: white;
+}
+
+.container
+{
+    display: flex;
+    height: 95vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#card
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 1rem;
+    border-radius: 3rem;
+    border: 0.1rem solid grey;
+    height: 20rem;
+    width: 25rem;
+    clip-path: circle(26.0% at 100% 0);
+    transition: all 0.3s;
+}
+
+#card:hover
+{
+    clip-path: circle(141.4% at 100% 0);
+}
