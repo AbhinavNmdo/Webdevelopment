@@ -7,6 +7,9 @@ export class News extends Component {
       <div className="container">
         <div className="row">
           <NewsCards />
+          <NewsCards />
+          <NewsCards />
+          <NewsCards />
         </div>
       </div>
     );
