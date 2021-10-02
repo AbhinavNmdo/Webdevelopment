@@ -3,9 +3,9 @@ import React, { Component } from "react";
 export class NavBar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light" id="navbar">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             News Space
           </a>
           <button
