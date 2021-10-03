@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export class NavBar extends Component {
   render() {
@@ -29,9 +27,9 @@ export class NavBar extends Component {
                   Home
                 </Link>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <Link
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   id="navbarDropdown"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -39,34 +37,34 @@ export class NavBar extends Component {
                 >
                   Other News
                 </Link>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <Link class="dropdown-item" to="/general">
+                    <Link className="dropdown-item" to="/general">
                       General
                     </Link>
                   </li>
                   <li>
-                    <Link class="dropdown-item" to="/business">
+                    <Link className="dropdown-item" to="/business">
                       Business
                     </Link>
                   </li>
                   <li>
-                    <Link class="dropdown-item" to="/entertainment">
+                    <Link className="dropdown-item" to="/entertainment">
                       Entertainment
                     </Link>
                   </li>
                   <li>
-                    <Link class="dropdown-item" to="/health">
+                    <Link className="dropdown-item" to="/health">
                       Health
                     </Link>
                   </li>
                   <li>
-                    <Link class="dropdown-item" to="/sports">
+                    <Link className="dropdown-item" to="/sports">
                       Sports
                     </Link>
                   </li>
                   <li>
-                    <Link class="dropdown-item" to="/technology">
+                    <Link className="dropdown-item" to="/technology">
                       Technology
                     </Link>
                   </li>

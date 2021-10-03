@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import catimage from '../catPlace.png';
 
 export class NewsCards extends Component {
   render() {
@@ -11,7 +12,7 @@ export class NewsCards extends Component {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src={image}
+              src={!image?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3CYHQoeCjsHpgXuHOtcbVV3ds9vx7digmkg&usqp=CAU":image}
               className="img-fluid"
               alt="..."
               style={{ borderRadius: "25px", height: '14rem'}}
@@ -26,7 +27,7 @@ export class NewsCards extends Component {
               </a>
               <div className="bottom-align-text">
                 <p className="card-text">
-                  <small className="text-muted">Published At: {published}</small>
+                  <small className="text-muted">Published At: {new Date(published).toLocaleString()}</small>
                 </p>
               </div>
             </div>
