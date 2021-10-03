@@ -14,7 +14,7 @@ export class NewsCards extends Component {
               src={image}
               className="img-fluid"
               alt="..."
-              style={{ borderRadius: "25px"}}
+              style={{ borderRadius: "25px", height: '14rem'}}
             />
           </div>
           <div className="col-md-8">

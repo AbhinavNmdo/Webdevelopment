@@ -13,6 +13,7 @@ $id = $_GET['shopid'];
     <title>Items</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <style>
     *
@@ -46,10 +47,11 @@ $id = $_GET['shopid'];
     <?php
     $collection = $db->shopkeeper;
     $shops = $collection->findOne(['_id' => new MongoDB\BSON\ObjectID($id)]);
+    $data = base64_encode($shops->Image->getData());
     
     echo '<div class="container responsive">
             <div class="col-lg-4 m-4 responsive">
-            <img id="profileimage" class="bd-placeholder-img rounded-circle responsive" src="shop.jpg" alt="" width="200px" height="200px">
+            <img style="display: flex;" id="profileimage" class="bd-placeholder-img rounded-circle responsive" src="data:jpeg;base64,'.$data.'" alt="" width="auto" height="150px">
             <h2 style="margin-top: 15px;">' . $shops['ShopName'] . '</h2>
             <p style="text-align: center;">' . $shops['Address'] . '</p>
             <p class="card-text">Shop Timing : '. $shops['Timing'] . '</p>
@@ -69,10 +71,11 @@ $id = $_GET['shopid'];
             $collection = $db->items;
             $items = $collection->find(['shop_id' => $id]);
             foreach($items as $item){
-                echo '<div class="col-md-4">
+                $data = base64_encode($item->image->getData());
+                echo '<div class="col-md-4" data-aos="zoom-in"  data-aos-offset="130">
                         <div class="row-md-4 m-4">
                         <div class="card" style="height: auto; border-radius: 15px;">
-                            <img src="https://source.unsplash.com/1600x900/?' . $item['name'] . '" class="card-img-top" alt="..." style="border-radius: 15px;">
+                            <img src="data:jpeg;base64,'. $data .'" class="card-img-top" alt="..." style="border-radius: 15px;">
                             <div class="card-body">
                                 <h5 class="card-title">' . $item['name'] . '</h5>
                                 <p class="card-text">' . $item['description'] . '</p>
@@ -94,5 +97,9 @@ $id = $_GET['shopid'];
     </div>
 
 </body>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 </html>

@@ -1,49 +1,42 @@
 import './App.css';
-import About from './components/About';
+// import About from './components/About';
 import NavBar from './components/NavBar';
 import News from './components/News';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
   return (
     <>
+    <Router>
       <NavBar/>
-      <Router>
-        <Switch>
-          <Route path="/">
-            <News pageSize={10} category="space"/>
-          </Route>
-          <Route path="/General">
-            <News pageSize={10} category="general"/>
-          </Route>
-          <Route path="/Business">
-            <News pageSize={10} category="business"/>
-          </Route>
-          <Route path="/Entertainment">
-            <News pageSize={10} category="entertainment"/>
-          </Route>
-          <Route path="/Health">
-            <News pageSize={10} category="health"/>
-          </Route>
-          <Route path="/Science">
-            <News pageSize={10} category="science"/>
-          </Route>
-          <Route path="/Sports">
-            <News pageSize={10} category="sports"/>
-          </Route>
-          <Route path="/Technology">
-            <News pageSize={10} category="technology"/>
-          </Route>
-          <Route path="/about">
-            <About/>
-          </Route>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path="/">
+          <News key="science" category="science" pageSize={10}/>
+        </Route>
+        <Route exact path="/general">
+          <News key="general" category="general" pageSize={10} />
+        </Route>
+        <Route exact path="/business">
+          <News key="business" category="business" pageSize={10} />
+        </Route>
+        <Route exact path="/entertainment">
+          <News key="entertainment" category="entertainment" pageSize={10} />
+        </Route>
+        <Route exact path="/health">
+          <News key="health" category="health" pageSize={10} />
+        </Route>
+        <Route exact path="/sports">
+          <News key="sports" category="sports" pageSize={10} />
+        </Route>
+        <Route exact path="/technology">
+          <News key="technology" category="technology" pageSize={10} />
+        </Route>
+      </Switch>
+    </Router>
     </>
   );
 }
