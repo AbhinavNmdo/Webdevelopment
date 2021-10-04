@@ -4,7 +4,7 @@ const port = 5000;
 
 mongoConnect();
 const app = express();
-
+app.use(express.json());
 app.use('/api/notes', require('./routes/notes'));
 app.use('/api/auth', require('./routes/user'));
 
