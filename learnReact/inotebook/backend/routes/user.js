@@ -3,12 +3,17 @@ const User = require('../models/Users');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+var fetchuser = require('../middleware/fetchuser');
 
-// Initializing Validators
-router.post('/',[
-    body('name', "Enter Name correctly").isLength({min: 3}),
-    body('email', "Use correct Email").isEmail(),
-    body('password', "Minimum Length is 5").isLength({min: 5})
+const JWT_SECRET = 'this$is$the$sec$string';
+
+// Signup the User
+router.post('/signup',[
+  // Initializing Validators
+  body('name', "Enter Name correctly").isLength({min: 3}),
+  body('email', "Use correct Email").isEmail(),
+  body('password', "Minimum Length is 5").isLength({min: 5})
 ], async (req, res)=>{
   // If error occured this this shows error message
   const errors = validationResult(req);
@@ -31,10 +36,74 @@ router.post('/',[
       name: req.body.name,
       email: req.body.email,
       password: secPass
-    }).then(res.json({"nice": "nice"}));
+    });
+    const data_Signup = {
+      user: {
+        id: user.id
+      }
+    };
+    const authToken_Signup = jwt.sign(data_Signup, JWT_SECRET);
+    res.send({authToken_Signup});
+
+
   } catch (err) {
+    console.log(err.message);
     res.send(500).json({"err": "Some Error Occured"});
   };
+});
+
+
+// Login the user 
+router.post('/login', [
+  // Initializing Validators
+  body('email', 'Enter correct email').isEmail(),
+  body('password', 'Enter pasword').exists()
+], async (req, res)=>{
+  // If error occured this this shows error message
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  };
+
+  try {
+    const { email, password } = req.body;
+
+    // Checking weather user exist or not 
+    let user = await User.findOne({email});
+    if(!user){
+      return res.status(400).send({err: "User not exist"});
+    };
+
+    // Checking password of the existing user 
+    let pass = await bcrypt.compare(password, user.password);
+    if(!pass){
+      return res.status(400).send({err: "Incorrect Password"});
+    };
+
+    let data_Login = {
+      user: {
+        id: user.id
+      }
+    };
+    let authToken_Login = jwt.sign(data_Login, JWT_SECRET);
+    res.send({authToken_Login});
+
+  } catch (error) {
+    res.status(400).send({err: "Some internal error occured"});
+  };
+
+});
+
+
+// Fetching the user detaile 
+router.post('/getuser',fetchuser, async (req, res)=>{
+  try {
+    let userId = req.user.id;
+    let user = await User.findById(userId).select("-password");
+    res.send(user);
+  } catch (error) {
+    res.status(400).send({err: "Some error occured"});
+  }
 });
 
 module.exports = router;
