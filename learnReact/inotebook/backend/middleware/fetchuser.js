@@ -12,7 +12,7 @@ const fetchuser = (req, res, next)=>{
         req.user = data.user;
         next();
     } catch (error) {
-        res.status(400).send({err: "Some internal error occured"});
+        return res.status(400).send({err: "Some internal error occured"});
     };
 }
 
