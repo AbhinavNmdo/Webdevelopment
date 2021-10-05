@@ -8,7 +8,7 @@ var fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = 'this$is$the$sec$string';
 
-// Signup the User
+// Route1 Signup the User
 router.post('/signup',[
   // Initializing Validators
   body('name', "Enter Name correctly").isLength({min: 3}),
@@ -53,7 +53,7 @@ router.post('/signup',[
 });
 
 
-// Login the user 
+// Route2 Login the user 
 router.post('/login', [
   // Initializing Validators
   body('email', 'Enter correct email').isEmail(),
@@ -95,7 +95,7 @@ router.post('/login', [
 });
 
 
-// Fetching the user detaile 
+// Route3 Fetching the details of the logid user
 router.post('/getuser',fetchuser, async (req, res)=>{
   try {
     let userId = req.user.id;
