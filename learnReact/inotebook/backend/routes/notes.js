@@ -72,6 +72,24 @@ router.put('/updatenote/:id', fetchuser, [
     
     noteUpdate = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, {new:true});
     res.send(noteUpdate);
+});
+
+
+// Router4 Deleting notes for loggid in uer
+router.delete('/deletenote/:id', fetchuser, async (req, res)=>{
+    let deleteNote = await Notes.findById(req.params.id);
+    if(!deleteNote){
+        res.status(401).send({err: "Error on Deletenote"});
+    };
+
+    if(deleteNote.user.toString() !== req.user.id){
+        res.status(401).send({err: "You are hacker"});
+    };
+
+    deleteNote = await Notes.findByIdAndDelete(req.params.id);
+    if(deleteNote){
+        res.send({Note: "Deleted Successfully"});
+    };
 })
 
 module.exports = router;
