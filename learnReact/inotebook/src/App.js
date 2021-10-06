@@ -25,6 +25,6 @@ function App() {
       </NoteState>
     </>
   );
-}
+};
 
 export default App;
