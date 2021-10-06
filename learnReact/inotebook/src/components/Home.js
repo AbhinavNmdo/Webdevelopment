@@ -5,7 +5,7 @@ const Home = () => {
     <>
       <div>
         <div className="container" style={{height: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-        <h1 align="center" className="my-4">
+        <h1 className="my-4">
           iNoteBook
         </h1>
           <div className="card p-4 mb-5">
@@ -35,6 +35,9 @@ const Home = () => {
             </form>
           </div>
         </div>
+      </div>
+      <div className="container" style={{display: 'flex', height: '90vh'}}>
+        <h1 style={{display: 'flex', justifyContent: 'center'}}>Your iNotes</h1>
       </div>
     </>
   );
