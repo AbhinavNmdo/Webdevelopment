@@ -5,13 +5,14 @@ import NotesCards from "./NotesCards";
 const NotesContent = () => {
   const context = useContext(NoteContext);
   const ref = useRef(null);
-  const { notes, getNote } = context;
+  const refClose = useRef(null);
+  const { notes, getNote, editNote } = context;
 
   useEffect(() => {
     getNote();
   }, []);
 
-  const [note, setNote] = useState({etitle: "", edescription: ""})
+  const [note, setNote] = useState({_eid: "", etitle: "", edescription: ""})
 
   const updateNote = (currentNote)=>{
     ref.current.click();
@@ -19,7 +20,8 @@ const NotesContent = () => {
   }
 
   const handleClick = (e)=>{
-    console.log("Updating notes....");
+    ref.current.click();
+    editNote(note._eid, note.etitle, note.edescription);
     e.preventDefault();
   }
 
@@ -31,7 +33,7 @@ const NotesContent = () => {
     <>
       <button
         type="button"
-        class="btn btn-primary d-none"
+        className="btn btn-primary d-none"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         ref={ref}
@@ -40,26 +42,26 @@ const NotesContent = () => {
       </button>
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Edit Note
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form>
                 <div className="mb-3">
                   <label htmlFor="etitle" className="form-label">
@@ -90,15 +92,16 @@ const NotesContent = () => {
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
+                ref={refClose}
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleClick}>
+              <button type="button" className="btn btn-primary" onClick={handleClick}>
                 Update
               </button>
             </div>

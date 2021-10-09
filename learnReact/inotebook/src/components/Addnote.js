@@ -6,12 +6,17 @@ const Addnote = () => {
   const { addNote } = context;
   const [note, setNote] = useState({title: "", description: ""})
   const handleClick = (e) => {
-      e.preventDefault();
-      addNote(note.title, note.description);
+    e.preventDefault();
+    addNote(note.title, note.description);
+    const d = document.getElementById('description');
+    const t = document.getElementById('title');
+    d.value = "";
+    t.value = "";
+
   };
 
   const handleChange = (e) => {
-      setNote({...note, [e.target.name]: e.target.value})
+    setNote({...note, [e.target.name]: e.target.value})
   };
   return (
     <>
