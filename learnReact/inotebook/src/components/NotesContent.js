@@ -12,16 +12,16 @@ const NotesContent = () => {
     getNote();
   }, []);
 
-  const [note, setNote] = useState({_eid: "", etitle: "", edescription: ""})
+  const [note, setNote] = useState({_id: "", etitle: "", edescription: ""})
 
   const updateNote = (currentNote)=>{
     ref.current.click();
-    setNote({etitle: currentNote.title, edescription: currentNote.description})
+    setNote({_id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description})
   }
 
   const handleClick = (e)=>{
     ref.current.click();
-    editNote(note._eid, note.etitle, note.edescription);
+    editNote(note._id, note.etitle, note.edescription);
     e.preventDefault();
   }
 

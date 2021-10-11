@@ -52,6 +52,8 @@ const NoteState = (props)=>{
     };
 
     const editNote = async (_id, title, description)=>{
+        console.log(_id);
+        console.log("1")
         let responce = await fetch(`${host}/api/notes/updatenote/${_id}`,{
             method: 'PUT',
             headers: {
@@ -62,15 +64,17 @@ const NoteState = (props)=>{
         });
         let json =  responce.json();
         
-        let newNote = JSON.parse(JSON.stringify(notes));
+        const newNote = JSON.parse(JSON.stringify(notes));
         for (let index = 0; index < newNote.length; index++) {
             const element = newNote[index];
-            if(element._id === _id){
+            if(element._id == _id){
+                console.log("2");
                 newNote[index].title = title;
                 newNote[index].description = description;
                 break;
             };
         }
+        setNotes(newNote);
     };
     return (
         <NoteContext.Provider value={{notes, editNote, deleteNote, addNote, getNote}}>
