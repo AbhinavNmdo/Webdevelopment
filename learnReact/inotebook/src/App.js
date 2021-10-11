@@ -7,15 +7,19 @@ import NoteState from "./context/Notes/NoteState";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Alert from "./components/Alert";
-import { useContext, useEffect } from "react";
-import NoteContext from "./context/Notes/NoteContext";
+import { useState } from "react";
 
 function App() {
-  const context = useContext(NoteContext);
-  const {showAlert} = context;
-  useEffect(() => {
-    showAlert("Hello", "success");
-  }, [])
+  const [alert, setAlert] = useState(null);
+  const showAlert = (msg, type)=>{
+    setAlert({
+      msg: msg,
+      type: type
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 2000);
+  }
   return (
     <>
       <NoteState>
