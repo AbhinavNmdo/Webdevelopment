@@ -3,7 +3,7 @@ import NoteContext from "../context/Notes/NoteContext";
 
 const Addnote = () => {
   const context = useContext(NoteContext);
-  const { addNote } = context;
+  const { addNote, showAlert } = context;
   const [note, setNote] = useState({title: "", description: ""})
   const handleClick = (e) => {
     e.preventDefault();
@@ -12,7 +12,7 @@ const Addnote = () => {
     const t = document.getElementById('title');
     d.value = "";
     t.value = "";
-
+    showAlert("Added Successfully", "success")
   };
 
   const handleChange = (e) => {

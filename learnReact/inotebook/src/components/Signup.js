@@ -1,33 +1,47 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
+import NoteContext from "../context/Notes/NoteContext";
 
 const Signup = () => {
+  const context = useContext(NoteContext);
+  const {showAlert} = context;
+  const history = useHistory();
 
-    const [credentials, setCredentials] = useState({name: "", email: "", password: ""})
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-    const onChange = (e)=>{
-        setCredentials({...credentials, [e.target.name]: e.target.value});
-    };
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-    const submitSignup = async (e)=>{
-        e.preventDefault();
-        const responce = await fetch("http://localhost:5000/api/auth/signup", {
-            method: 'POST',
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({name: credentials.name, email: credentials.email, password: credentials.password})
-        });
-        const json = await responce.json();
-        console.log(json);
-
-    }
+  const submitSignup = async (e) => {
+    e.preventDefault();
+    const responce = await fetch("http://localhost:5000/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
+    // eslint-disable-next-line
+    const json = await responce.json();
+    history.push("/login");
+    showAlert("Signed Up Successfully", "success"); 
+  };
 
   return (
     <div
       className="container d-flex flex-column justify-content-center align-items-center"
-      style={{ height: "79vh" }}
+      style={{ height: "70vh" }}
     >
-      <h1 className="p-3">Login</h1>
+      <h1 className="p-3">SignUp</h1>
 
       <div className="card p-2" style={{ width: "20rem", height: "auto" }}>
         <form onSubmit={submitSignup}>

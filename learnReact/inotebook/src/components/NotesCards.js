@@ -3,7 +3,7 @@ import NoteContext from "../context/Notes/NoteContext";
 
 const NotesCards = (props) => {
   const context = useContext(NoteContext);
-  const { deleteNote } = context;
+  const { deleteNote, showAlert } = context;
   const { note, updateNote } = props;
   return (
     <>
@@ -17,6 +17,7 @@ const NotesCards = (props) => {
                 className="fas fa-trash mx-2"
                 onClick={() => {
                   deleteNote(note._id);
+                  showAlert("Deleted Successfully", "success");
                 }}
               ></i>
               <i

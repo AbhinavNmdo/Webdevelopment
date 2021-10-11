@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import NoteContext from "../context/Notes/NoteContext";
 
-const Login = () => {
+const Login = (props) => {
   const context = useContext(NoteContext);
-  const {showAlert} = context;
+  // eslint-disable-next-line
+  const {alert, showAlert} = context;
   const [credentials, setCredentials] = useState({email: "", password: ""})
   const history = useHistory();
 
@@ -21,7 +22,7 @@ const Login = () => {
     if(json.success){
       localStorage.setItem('token', json.authToken_Login);
       history.push('/');
-      showAlert("Logged in successfully", "success");
+      showAlert("Logged In Successfully", "success");
     }
   };
 
@@ -33,7 +34,7 @@ const Login = () => {
     <>
       <div
         className="container d-flex flex-column justify-content-center align-items-center"
-        style={{ height: "79vh" }}
+        style={{ height: "70vh" }}
       >
         <h1 className="p-3">Login</h1>
 

@@ -13,6 +13,7 @@ const Home = () => {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
+          marginBottom: '40px'
         }}
       >
         <Addnote />

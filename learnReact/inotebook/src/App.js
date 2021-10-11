@@ -11,6 +11,7 @@ import { useState } from "react";
 
 function App() {
   const [alert, setAlert] = useState(null);
+  // eslint-disable-next-line
   const showAlert = (msg, type)=>{
     setAlert({
       msg: msg,
@@ -25,9 +26,7 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-          <div style={{height: '50px'}}>
-            <Alert alert={alert}/>
-          </div>
+          <Alert alert={alert}/>
           <div className="App">
             <Switch>
               <Route exact path="/">
