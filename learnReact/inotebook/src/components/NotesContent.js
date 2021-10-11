@@ -117,7 +117,7 @@ const NotesContent = () => {
           Your iNotes
         </h1>
         {notes.map((note) => {
-          return <NotesCards key={note._id} note={note} updateNote={updateNote}/>;
+          return <NotesCards key={note._id} note={note}/>;
         })}
       </div>
     </>

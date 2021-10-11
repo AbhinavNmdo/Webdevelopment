@@ -8,6 +8,8 @@ var fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = 'this$is$the$sec$string';
 
+let success = false;
+
 // Route1 Signup the User
 router.post('/signup',[
   // Initializing Validators
@@ -18,13 +20,13 @@ router.post('/signup',[
   // If error occured this this shows error message
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({success, errors: errors.array() });
   };
   try {
     // Checking weather the email already exist or not 
     let user = await User.findOne({email: req.body.email});
     if (user){
-      return res.status(400).json({error: "Sorry this email already exist"});
+      return res.status(400).json({success, error: "Sorry this email already exist"});
     }
     
     // Creating Hash of the password 
@@ -43,7 +45,7 @@ router.post('/signup',[
       }
     };
     const authToken_Signup = jwt.sign(data_Signup, JWT_SECRET);
-    res.send({authToken_Signup});
+    res.send({success: true, authToken_Signup});
 
 
   } catch (err) {
@@ -71,13 +73,13 @@ router.post('/login', [
     // Checking weather user exist or not 
     let user = await User.findOne({email});
     if(!user){
-      return res.status(400).send({err: "User not exist"});
+      return res.status(400).send({success: false, err: "User not exist"});
     };
 
     // Checking password of the existing user 
     let pass = await bcrypt.compare(password, user.password);
     if(!pass){
-      return res.status(400).send({err: "Incorrect Password"});
+      return res.status(400).send({success: false, err: "Incorrect Password"});
     };
 
     let data_Login = {
@@ -86,10 +88,10 @@ router.post('/login', [
       }
     };
     let authToken_Login = jwt.sign(data_Login, JWT_SECRET);
-    res.send({authToken_Login});
+    res.send({success: true, authToken_Login});
 
   } catch (error) {
-    res.status(400).send({err: "Some internal error occured"});
+    res.status(400).send({success: false, err: "Some internal error occured"});
   };
 
 });

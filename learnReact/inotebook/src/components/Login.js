@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
+import NoteContext from "../context/Notes/NoteContext";
 
 const Login = () => {
+  const context = useContext(NoteContext);
+  const {showAlert} = context;
+  const [credentials, setCredentials] = useState({email: "", password: ""})
+  const history = useHistory();
+
+  const submitLogin = async (e)=>{
+    e.preventDefault();
+    const responce = await fetch("http://localhost:5000/api/auth/login", {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({email: credentials.email, password: credentials.password})
+    });
+    let json = await responce.json();
+    if(json.success){
+      localStorage.setItem('token', json.authToken_Login);
+      history.push('/');
+      showAlert("Logged in successfully", "success");
+    }
+  };
+
+  const onChange = (e)=>{
+    setCredentials({...credentials, [e.target.name]: e.target.value});
+  };
+
   return (
     <>
       <div
@@ -10,31 +38,35 @@ const Login = () => {
         <h1 className="p-3">Login</h1>
 
         <div className="card p-2" style={{ width: "20rem", height: "auto" }}>
-          <form>
-            <div class="mb-3">
-              <label for="email" class="form-label">
+          <form onSubmit={submitLogin}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
                 Email address
               </label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="email"
                 name="email"
+                onChange={onChange}
+                value={credentials.email}
               />
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
                 Password
               </label>
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="password"
                 name="password"
+                onChange={onChange}
+                value={credentials.password}
               />
             </div>
-            <button type="submit" class="btn btn-primary">
-              Submit
+            <button type="submit" className="btn btn-primary">
+              Login
             </button>
           </form>
         </div>
