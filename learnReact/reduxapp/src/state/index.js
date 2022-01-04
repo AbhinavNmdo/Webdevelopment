@@ -1,1 +1,0 @@
-import * as action from './action/index';
